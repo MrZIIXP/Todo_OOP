@@ -66,32 +66,35 @@ class App extends Component {
             Add
           </button>
         </div>
-        <ul style={{ scrollbarWidth: 'none' }} className="space-y-3 max-h-[70vh] overflow-y-auto">
+        <ul style={{ scrollbarWidth: 'none' }} className="space-y-2 max-h-[70vh] z-0 overflow-y-auto relative">
           {this.state.todos.map(todo => (
-            <li
-              key={todo.id}
-              className={`flex items-center justify-between px-4 py-2 rounded-md hover:scale-110 transition-all duration-200 shadow-sm ${todo.completed ? 'bg-green-100' : 'bg-gray-100'
-                }`}
-            >
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => this.toggleTodo(todo.id)}
-              />
-              <span
-                onClick={() => this.toggleTodo(todo.id)}
-                className={`flex-1 cursor-pointer select-none ${todo.completed ? 'line-through text-gray-400' : 'text-gray-800'
-                  }`}
+            <li className='px-3 hover:z-10 relative'>
+              <div
+                key={todo.id}
+                className={`flex items-center justify-between px-4 py-2 rounded-md
+              transition-all duration-200
+              hover:scale-105 
+              ${todo.completed ? 'bg-green-100' : 'bg-gray-100'}`}
               >
-                {todo.text}
-              </span>
-              <button
-                onClick={() => this.deleteTodo(todo.id)}
-                className="ml-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
-              >
-                Delete
-              </button>
-            </li>
+                <span
+                  onClick={() => this.toggleTodo(todo.id)}
+                  className={`flex items-center gap-2 cursor-pointer select-none ${todo.completed ? 'line-through text-gray-400' : 'text-gray-800'
+                    }`}
+                >
+                  <input
+                    type="checkbox"
+                    className='scale-150 accent-green-500 cursor-pointer '
+                    checked={todo.completed}
+                  />
+                  {todo.text}
+                </span>
+                <button
+                  onClick={() => this.deleteTodo(todo.id)}
+                  className="ml-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                >
+                  Delete
+                </button>
+              </div></li>
           ))}
         </ul>
       </div>
